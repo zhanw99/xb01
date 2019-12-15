@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<!--测试-->
+<div class="register-pannel" id="register-pannel">
+    <div class="register-l" align="center">
+        <div class="input-group" style="width: 300px;">
+            <input type="text" class="form-control" placeholder="邮箱/手机号/用户名" style="height: 40px;"/>
+            <span class="glyphicon glyphicon-user form-control-feedback" aria-hidden="true"/>
+        </div>
+        <br/>
+        <div class="input-group" style="width: 300px;">
+            <input type="text" class="form-control" placeholder="密码" style="height: 40px;"/>
+            <span class="glyphicon glyphicon-lock form-control-feedback"/>
+        </div>
+        <br/>
+        <div class="input-group" style="width: 300px;">
+            <input type="text" class="form-control" placeholder="手机号" style="height: 40px;"/>
+            <span class="glyphicon glyphicon-phone form-control-feedback"/>
+        </div>
+        <br/>
+        <div class="input-group" style="width: 300px;">
+            <span class="register-msg-btn" v-show="show" @Click="getCode">发送验证码</span>
+            <span class="register-msg-btn" v-show="!show">{{count}} s</span>
+            <input type="text" class="form-control" placeholder="验证码"
+                   style="float: right; height: 40px; width: 150px;"/>
+            <span class="glyphicon glyphicon-font form-control-feedback"/>
+        </div>
+        <br/>
+        <span class="btn-register">注册</span>
+    </div>
+</div>
+</body>
+</html>
+
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="js/jquery.backstretch.min.js"></script>
+<script src="js/scripts.js"></script>
+<script src="vue/axios.js"></script>
+<script src="vue/vue.js"></script>
+<script>
+    new Vue({
+        el: '.register-pannel', //注册div的class
+        data: {
+            show: true,
+            timer: null,
+            count: ''
+        },
+        methods: {
+            getCode() {
+                this.show = false;
+                const TIME_COUNT = 60;
+                if (!this.timer) {
+                    this.count = TIME_COUNT;
+                    this.show = false;
+                    this.timer = setInterval(() => {
+                        if (this.count > 0 && this.count <= TIME_COUNT) {
+                            this.count--;
+                        } else {
+                            this.show = true;
+                            clearInterval(this.timer);
+                            this.timer = null;
+                        }
+                    }, 1000)
+                }
+            }
+        }
+    });
+
+</script>
+</html>

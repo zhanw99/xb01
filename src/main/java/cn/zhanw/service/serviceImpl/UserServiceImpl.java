@@ -82,4 +82,19 @@ public class UserServiceImpl extends IServiceImpl<User> implements UserService {
     public User updataOpenId(Integer id){
         return userMapper.updataOpenId(id);
     }
+    @Override
+    public Integer selectByName(String username){
+        User user = userMapper.selectByName(username);
+        Integer count = user.getCount();
+        return count;
+    }
+    @Override
+    public void insertUser(User user){
+        userMapper.insertUser(user);
+    }
+
+    @Override
+    public Integer updatePassword(String password, String email) {
+        return userMapper.updatePassword(email,password);
+    }
 }

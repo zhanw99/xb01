@@ -17,4 +17,11 @@ public interface UserService extends IService<User> {
     User selectLogin(User user);
 
     User updataOpenId(Integer id);
+
+    Integer selectByName(String id);
+
+    void insertUser(User user);
+
+    Integer updatePassword(String password,String email);
+
 }

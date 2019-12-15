@@ -11,6 +11,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.StringUtils;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +29,19 @@ public class TestUser {
 
     @Test
     public void updataOpenId2(){
-        User user = mapper.updataOpenId(1);
-            System.out.println(user);
+        User user = new User();
+        String format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+        Date date = new Date();
+        Timestamp timeStamp = new Timestamp(System.currentTimeMillis());
+        System.out.println(format);
+        user.setRegisterTime(format);
+        user.setUsername("xiangbai");
+        user.setPassword("123456");
+       mapper.insertUser(user);
+    }
+    @Test
+    public void updataOpenId3(){
+        Integer admin = mapper.updatePassword("admin1", "zijun1024@aliyun.com");
+        System.out.println(admin);
     }
 }

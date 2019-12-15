@@ -117,13 +117,13 @@
                         </select>
                     </div>
                         <label class="form-control-label">抄送人：</label>
-                        <select class="bootstrap-select"  v-model="Release.makeUser">
-                            <!--<option v-for="list in users" :value="list.id" >1</option>-->
+                        <select class="selectpicker" multiple data-live-search="true" v-model="Release.makeUser">
+<!--                        <select class="bootstrap-select" multiple  v-model="Release.makeUser">-->
                             <option v-for="list2 in users" :value="list2.id">{{list2.realName}}</option>
 <!--                            <option>小方</option>-->
 <!--                            <option>小标</option>-->
 <!--                            <option>小准</option>-->
-                            <option>东方标准</option>
+<!--                            <option>东方标准</option>-->
                         </select>
                     <!--开始时间-->
                     <div class="form-group">
@@ -182,10 +182,10 @@
 <script src="../static/meeting_add.js"></script>
 
 <script>
-$(function () {
-	$('#startTime').datetimepicker();
-    $('#endTime').datetimepicker();
-})
+// $(function () {
+// 	$('#startTime').datetimepicker();
+//     $('#endTime').datetimepicker();
+// })
 </script>
 </body>
 </html>

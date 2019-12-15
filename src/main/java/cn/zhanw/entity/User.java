@@ -60,14 +60,13 @@ public class User {
      */
     @Column(name = "register_time")
     @JsonFormat(pattern = "yyyy:MM:dd")
-    private Date registerTime;
+    private String registerTime;
 
     /**
      * 上次登录时间
      */
     @Column(name = "login_time")
-    @JsonFormat(pattern = "yyyy:MM:dd")
-    private Date loginTime;
+    private String loginTime;
 
     /**
      * 头像
@@ -113,6 +112,44 @@ public class User {
 
     @Transient
     private Boolean flag = false;
+    /**
+     * 验证账号是否已存在
+     */
+    @Transient
+    private Integer count;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", realName='" + realName + '\'' +
+                ", age=" + age +
+                ", phone='" + phone + '\'' +
+                ", gender='" + gender + '\'' +
+                ", desc='" + desc + '\'' +
+                ", registerTime=" + registerTime +
+                ", loginTime=" + loginTime +
+                ", pic='" + pic + '\'' +
+                ", look=" + look +
+                ", isSecret='" + isSecret + '\'' +
+                ", deptName='" + deptName + '\'' +
+                ", follow=" + follow +
+                ", deptId=" + deptId +
+                ", flag=" + flag +
+                ", count=" + count +
+                '}';
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
 
     public Boolean getFlag() {
         return flag;
@@ -285,7 +322,7 @@ public class User {
      *
      * @return register_time - 注册时间
      */
-    public Date getRegisterTime() {
+    public String getRegisterTime() {
         return registerTime;
     }
 
@@ -294,7 +331,7 @@ public class User {
      *
      * @param registerTime 注册时间
      */
-    public void setRegisterTime(Date registerTime) {
+    public void setRegisterTime(String registerTime) {
         this.registerTime = registerTime;
     }
 
@@ -303,7 +340,7 @@ public class User {
      *
      * @return login_time - 上次登录时间
      */
-    public Date getLoginTime() {
+    public String getLoginTime() {
         return loginTime;
     }
 
@@ -312,7 +349,7 @@ public class User {
      *
      * @param loginTime 上次登录时间
      */
-    public void setLoginTime(Date loginTime) {
+    public void setLoginTime(String loginTime) {
         this.loginTime = loginTime;
     }
 
@@ -406,27 +443,4 @@ public class User {
         this.deptId = deptId;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", realName='" + realName + '\'' +
-                ", age=" + age +
-                ", phone='" + phone + '\'' +
-                ", gender='" + gender + '\'' +
-                ", desc='" + desc + '\'' +
-                ", registerTime=" + registerTime +
-                ", loginTime=" + loginTime +
-                ", pic='" + pic + '\'' +
-                ", look=" + look +
-                ", isSecret='" + isSecret + '\'' +
-                ", deptName='" + deptName + '\'' +
-                ", follow=" + follow +
-                ", deptId=" + deptId +
-                ", flag=" + flag +
-                '}';
-    }
 }

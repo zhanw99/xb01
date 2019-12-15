@@ -2,19 +2,21 @@ new Vue({
     el: '#container',
     data: {
         params: {
-            checked:'',
-            checkCode2:'',
+            checkbox:false,
+            checkCode:'',
             password:'',
             username:''
         }
     },
     methods: {
-        login:function () {
+        login:function (event) {
+            this.params.checked = event.target.checked;
             axios({
                 url:'manager/login/login',
                 method:"post",
                 data:this.params
             }).then(response => {
+                console.log(response.data)
                 let data = response.data;
                 if(data.success==false){//登录失败
                      layer.msg(data.msg,{time:500},function(){
@@ -29,7 +31,6 @@ new Vue({
                     sessionStorage.getItem("userInfo");
                      layer.msg(data.msg,{time:500},function(){
                         location.href='html/user.html';
-
                     });
                 }
                 console.log(response.data)

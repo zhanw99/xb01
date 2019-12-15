@@ -92,7 +92,7 @@
                 <h2 class="h5 no-margin-bottom">个人中心</h2>
             </div>
         </div>
-        <section class="no-padding-bottom">
+        <section class="no-padding-bottom" id="no-padding-bottom">
             <!-- Form Elements -->
             <div class="col-lg-12">
                 <div class="block">
@@ -105,7 +105,7 @@
                     </div>
                     <div class="title">
                         <br>
-                        <p class="h5"><strong>关注数：</strong><span>&nbsp;</span><span>&nbsp;</span><span>52</span></p>
+                        <p class="h5"><strong>关注数：</strong><span>&nbsp;</span><span>&nbsp;</span><span>{{params.look}}</span></p>
                         <br>
                         <p class="h5"><strong>被看数：</strong><span>&nbsp;</span><span>&nbsp;</span><span>1168</span></p>
                         <br>
@@ -116,7 +116,7 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 form-control-label">真实姓名</label>
                                 <div class="col-sm-9">
-                                    <input type="text" value="东方标准" class="form-control">
+                                    <input type="text" :value="params.realName" class="form-control">
                                 </div>
                             </div>
                             <div class="line"></div>
@@ -136,43 +136,44 @@
                             <div class="form-group row">
                                 <label class="col-sm-3 form-control-label">电话</label>
                                 <div class="col-sm-9">
-                                    <input type="text" value="020-xxxxxxxx" name="password" class="form-control">
-                                </div>
+                                    <input type="text" :value="params.phone" name="password" class="form-control">
+                                    </div>
                             </div>
                             <div class="line"></div>
                             <div class="form-group row">
                                 <label class="col-sm-3 form-control-label">年龄</label>
                                 <div class="col-sm-9">
-                                    <input type="text" placeholder="20" class="form-control">
+                                    <input type="text" :value="params.age" class="form-control">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-sm-3 form-control-label">性别 </label>
                                 <div class="col-sm-9">
-
                                     <div class="i-checks">
-                                        <input id="radioCustom1" type="radio" value="1" name="sex" class="radio-template">
+<!--                                        <input id="radioCustom1" type="radio" value="1" name="sex" class="radio-template">-->
+                                        <input disabled="disabled" id="radioCustom1" v-model="params.gender" type="radio" checked="checked" value="1" name="sex"
+                                               class="radio-template">
                                         <label for="radioCustom1">男</label>
                                         <span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span>
-                                        <input id="radioCustom2" type="radio" value="0" name="sex" class="radio-template">
+<!--                                        <input id="radioCustom2" type="radio" value="0" name="sex" class="radio-template">-->
+                                        <input disabled="disabled" id="radioCustom2" v-model="params.gender" type="radio" value="0" name="sex"
+                                               class="radio-template">
                                         <label for="radioCustom2">女</label>
                                     </div>
                                 </div>
-
-
                             </div>
                             <div class="line"></div>
                             <div class="form-group row">
                                 <label class="col-sm-3 form-control-label">注册时间</label>
                                 <div class="col-sm-9">
-                                    <input type="text" disabled="" placeholder="2019-10-30 09:30:00" class="form-control">
+                                    <input type="text" disabled="" :value="params.registerTime" class="form-control">
                                 </div>
                             </div>
                             <div class="line"></div>
                             <div class="form-group row">
                                 <label class="col-sm-3 form-control-label">登录时间</label>
                                 <div class="col-sm-9">
-                                    <input type="text" disabled="" placeholder="2019-10-30 19:30:00" class="form-control">
+                                    <input type="text" disabled="" :value="params.loginTime" class="form-control">
                                 </div>
                             </div>
                             <div class="line"></div>
@@ -181,8 +182,10 @@
                                 <label class="col-sm-3 form-control-label">是否私密 <br><small class="text-primary">默认为否，可以不设置</small></label>
                                 <div class="col-sm-9">
                                     <div class="i-checks">
-                                        <input id="checkboxCustom1" type="checkbox" value="" class="checkbox-template">
-                                        <label for="checkboxCustom1">是否私密</label>
+                                        <input disabled="disabled"  id="checkboxCustom3" v-if="params.isSecret =='1'" checked="checked"  :class="params.isSecret==1?'checkbox-template':0" type="checkbox" >
+                                        <input disabled="disabled"  id="checkboxCustom2" v-if="params.isSecret =='0'" :class="params.isSecret==0?'checkbox-template':0" type="checkbox" >
+                                        <!-- <input id="checkboxCustom1" type="checkbox" value="" class="checkbox-template">-->
+                                        <label for="checkboxCustom2">是否私密</label>
                                     </div>
 
                                 </div>
@@ -221,6 +224,12 @@
 <script src="../js/front.js"></script>
 <script src="../js/custom.js"></script>
 <script src="../js/layer.js"></script>
+
+<script src="../vue/vue.js"></script>
+<script src="../vue/axios.js"></script>
+<script src="../ztree/jquery.ztree.all-3.5.js"></script>
+<script src="../static/user_look.js"></script>
+
 <script type="text/javascript">
     
     $("#pic").click(function () {

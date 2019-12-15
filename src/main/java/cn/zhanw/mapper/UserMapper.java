@@ -1,8 +1,10 @@
 package cn.zhanw.mapper;
 
 import cn.zhanw.entity.User;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
@@ -85,5 +87,22 @@ public interface UserMapper extends Mapper<User> {
             "WHERE " +
             "us.id=#{id}")
     User updataOpenId(Integer id);
+@Select("SELECT " +
+        " COUNT( 0 ) count  " +
+        "FROM " +
+        " `user`  " +
+        "WHERE " +
+        " username = #{username}")
+    User selectByName(String username);
+@Insert("INSERT INTO `user` ( username, `password`,email, register_time ) " +
+        "VALUES " +
+        " (#{username}, #{password},#{email}, #{registerTime})")
+    User insertUser(User user);
+
+@Update("UPDATE `user` " +
+        "SET `password` = #{password} " +
+        "WHERE " +
+        "email =#{email} ")
+Integer updatePassword(@Param("password")String password,@Param("email")String email);
 
 }

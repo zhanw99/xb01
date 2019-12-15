@@ -66,5 +66,6 @@ new Vue({
     },
     mounted: function () {
         this.selectDept();
+        // this.selectDeptUser(1);
     },
 })

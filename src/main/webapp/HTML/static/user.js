@@ -39,6 +39,10 @@ new Vue({
                 console.log(error);
             })
         },
+        /**
+         * 查看详细
+         * @param id
+         */
         detailed:function(id){
           axios({
             url:'manager/detailed',

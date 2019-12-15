@@ -14,7 +14,7 @@ import org.springframework.web.servlet.config.annotation.*;
 //替换xml配置文件，使用注解形式
 @Configuration//用于定义配置类，可替换xml配置文件
 //1.3  加载映射文件
-@ComponentScan(basePackages={"cn.zhanw.controller"})
+@ComponentScan(basePackages={"cn.zhanw.controller","cn.zhanw.utils"})
 //开启mvc支持
 @EnableWebMvc
 
